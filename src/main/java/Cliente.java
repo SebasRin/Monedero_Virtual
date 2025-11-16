@@ -95,4 +95,72 @@ public class Cliente {
     public void setTransaccionesProgramadas(List<TransaccionProgramada> transaccionesProgramadas) {
         this.transaccionesProgramadas = transaccionesProgramadas;
     }
+
+    public void agregarMonedero(Monedero m) {
+
+        if (m == null) {
+            return;
+        }
+
+        for (Monedero x : monederos) {
+            if (x.getIdMonedero().equals(m.getIdMonedero())) {
+                System.out.println("Este monedero ya está agregado.");
+                return;
+            }
+        }
+
+        monederos.add(m);
+        System.out.println("Monedero agregado al cliente.");
+    }
+    public Monedero buscarMonedero(String id) {
+
+        if (id == null) {
+            return null;
+        }
+
+        for (Monedero m : monederos) {
+            if (m.getIdMonedero().equals(id)) {
+                return m;
+            }
+        }
+
+        return null;
+    }
+
+    public void agregarTransaccion(Transaccion t) {
+
+        if (t == null){
+            return;
+        }
+        historialGeneral.add(t);
+    }
+    public void agregarTransaccionProgramada(TransaccionProgramada tp) {
+
+        if (tp == null) {
+            return;
+        }
+
+        for (TransaccionProgramada x : transaccionesProgramadas) {
+            if (x.getIdProgramada().equals(tp.getIdProgramada())) {
+                System.out.println("Ya existe una transacción programada con ese ID.");
+                return;
+            }
+        }
+
+        transaccionesProgramadas.add(tp);
+    }
+    public void actualizarPuntos(int puntosGanados) {
+
+        if (puntosGanados < 0){
+            return;
+        }
+
+        puntosAcumulados += puntosGanados;
+
+    }
+
+
+    public void cambiarRango(RangoCliente nuevo) {
+        rangoActual = nuevo;
+    }
 }
