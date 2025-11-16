@@ -45,4 +45,38 @@ public class Monedero {
     public void setHistorial(List<Transaccion> historial) {
         this.historial = historial;
     }
+
+    public void agregarTransaccion(Transaccion t) {
+
+        if (t == null) return;
+
+        historial.add(t);
+    }
+
+
+    public void depositar(double monto) {
+
+        if (monto <= 0) {
+            System.out.println("Monto inválido.");
+            return;
+        }
+
+        saldo += monto;
+    }
+
+
+    public boolean retirar(double monto) {
+
+        if (monto <= 0){
+            return false;
+        }
+
+        if (monto > saldo) {
+            System.out.println("Saldo insuficiente.");
+            return false;
+        }
+
+        saldo -= monto;
+        return true;
+    }
 }
