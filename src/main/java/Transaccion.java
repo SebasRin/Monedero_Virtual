@@ -74,4 +74,6 @@ public abstract class Transaccion {
     public void setClienteInvolucrado(Cliente clienteInvolucrado) {
         this.clienteInvolucrado = clienteInvolucrado;
     }
+
+    public abstract void ejecutar();
 }

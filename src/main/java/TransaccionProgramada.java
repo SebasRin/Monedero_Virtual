@@ -94,4 +94,34 @@ public class TransaccionProgramada {
     public void setActiva(boolean activa) {
         this.activa = activa;
     }
+
+    public void activar() {
+        activa = true;
+    }
+
+    public void desactivar() {
+        activa = false;
+    }
+
+    public void reprogramar(Date nuevaFecha) {
+        fechaEjecucion = nuevaFecha;
+    }
+
+    public void ejecutarProgramada() {
+
+        if (!activa) {
+            System.out.println("Esta transacción programada está desactivada.");
+            return;
+        }
+
+        // validar fecha
+        Date hoy = new Date();
+        if (hoy.before(fechaEjecucion)) {
+            System.out.println("Aún no es la fecha de ejecución.");
+            return;
+        }
+
+        // aquí falta crear el proceso de la transacción
+        System.out.println("Ejecutando transacción programada...");
+    }
 }
