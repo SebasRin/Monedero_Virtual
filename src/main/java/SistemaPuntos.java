@@ -45,4 +45,32 @@ public class SistemaPuntos {
     public void setHistorialPuntos(List<String> historialPuntos) {
         this.historialPuntos = historialPuntos;
     }
+
+    public void registrarPuntos(String descripcion) {
+        historialPuntos.add(descripcion);
+    }
+
+    public int calcularPuntos(Transaccion t) {
+        if (t instanceof Deposito)
+            return (int)(t.getMonto() / 100) * puntosPorDeposito;
+
+        if (t instanceof Retiro)
+            return (int)(t.getMonto() / 100) * puntosPorRetiro;
+
+        if (t instanceof Transferencia)
+            return (int)(t.getMonto() / 100) * puntosPorTransferencia;
+
+        return 0;
+    }
+
+    public void asignarPuntos(Transaccion t) {
+        int puntos = calcularPuntos(t);
+        Cliente c = t.getClienteInvolucrado();
+
+        puntos = c.getRangoActual().bonusPuntos(puntos);
+
+        c.actualizarPuntos(puntos);
+
+        registrarPuntos("Cliente " + c.getNombre() + " ganó " + puntos);
+    }
 }

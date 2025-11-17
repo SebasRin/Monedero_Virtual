@@ -42,4 +42,27 @@ public class Notificacion {
     public void setNotificacionEnviada(boolean notificacionEnviada) {
         this.notificacionEnviada = notificacionEnviada;
     }
+
+    public void enviarCorreo() {
+
+        if (correoDestino == null || correoDestino.isEmpty()) {
+            System.out.println("Correo no asignado.");
+            return;
+        }
+
+        notificacionEnviada = true;
+        System.out.println("Correo enviado a " + correoDestino);
+    }
+
+
+    public void enviarWhatsApp() {
+
+        if (numeroWhatsApp == null || numeroWhatsApp.isEmpty()) {
+            System.out.println("Número de WhatsApp no asignado.");
+            return;
+        }
+
+        notificacionEnviada = true;
+        System.out.println("Mensaje de WhatsApp enviado al " + numeroWhatsApp);
+    }
 }

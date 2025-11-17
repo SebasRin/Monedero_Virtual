@@ -32,4 +32,9 @@ public abstract class RangoCliente {
     public void setPuntosMaximos(int puntosMaximos) {
         this.puntosMaximos = puntosMaximos;
     }
+    public abstract double descuentoTransferencias();
+
+    public abstract int bonusPuntos(int puntosOriginales);
+
+    public abstract boolean retirosGratis();
 }

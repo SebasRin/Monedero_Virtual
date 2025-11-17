@@ -25,4 +25,26 @@ public class VerificacionDeTransacciones {
     public void setUltimaVerificacionCorrecta(boolean ultimaVerificacionCorrecta) {
         this.ultimaVerificacionCorrecta = ultimaVerificacionCorrecta;
     }
+
+    public void verificar(Transaccion t) {
+
+        erroresDetectados.clear();
+
+        if (t.getMonto() <= 0)
+            erroresDetectados.add("Monto inválido.");
+
+        if (t.getFecha() == null)
+            erroresDetectados.add("Fecha no asignada.");
+
+        ultimaVerificacionCorrecta = erroresDetectados.isEmpty();
+    }
+
+
+    public boolean esCorrecta() {
+        return ultimaVerificacionCorrecta;
+    }
+
+    public void registrarError(String err) {
+        erroresDetectados.add(err);
+    }
 }
