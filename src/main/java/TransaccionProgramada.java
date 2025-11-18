@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public class TransaccionProgramada {
@@ -10,6 +11,7 @@ public class TransaccionProgramada {
     private boolean recurrente;
     private int cadaCuantosDias;
     private boolean activa;
+
 
     public TransaccionProgramada(String idProgramada, Date fechaEjecucion, double monto, String tipoTransaccion, Monedero origen, Monedero destino, boolean recurrente, int cadaCuantosDias, boolean activa) {
         this.idProgramada = idProgramada;
@@ -110,18 +112,76 @@ public class TransaccionProgramada {
     public void ejecutarProgramada() {
 
         if (!activa) {
-            System.out.println("Esta transacción programada está desactivada.");
+            System.out.println("La transacción programada está desactivada.");
             return;
         }
 
-        // validar fecha
+
         Date hoy = new Date();
+
+
         if (hoy.before(fechaEjecucion)) {
-            System.out.println("Aún no es la fecha de ejecución.");
+            System.out.println("Aún no es la fecha de ejecución de esta transacción.");
             return;
         }
 
-        // aquí falta crear el proceso de la transacción
         System.out.println("Ejecutando transacción programada...");
+
+
+        Transaccion t = null;
+
+        if (tipoTransaccion.equalsIgnoreCase("deposito")) {
+            t = new Deposito(null, null, 0, null, null, null, null);
+            t.setDestino(destino);
+            t.setMonto(monto);
+            t.setFecha(new Date());
+            t.setClienteInvolucrado(destino.getCliente());
+            t.setTipo("Deposito");
+        }
+        else if (tipoTransaccion.equalsIgnoreCase("retiro")) {
+            t = new Retiro(null, null, 0, null, null, null, null);
+            t.setOrigen(origen);
+            t.setMonto(monto);
+            t.setFecha(new Date());
+            t.setClienteInvolucrado(origen.getCliente());
+            t.setTipo("Retiro");
+        }
+        else if (tipoTransaccion.equalsIgnoreCase("transferencia")) {
+            t = new Transferencia(null, null, 0, null, null, null, null);
+            t.setOrigen(origen);
+            t.setDestino(destino);
+            t.setMonto(monto);
+            t.setFecha(new Date());
+            t.setClienteInvolucrado(origen.getCliente());
+            t.setTipo("Transferencia");
+        }
+        else {
+            System.out.println("Tipo de transacción programada inválido.");
+            return;
+        }
+
+
+        t.ejecutar();
+
+
+        Cliente c = t.getClienteInvolucrado();
+        if (c != null) {
+            c.agregarTransaccion(t);
+        }
+
+
+        if (recurrente) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fechaEjecucion);
+            cal.add(Calendar.DAY_OF_MONTH, cadaCuantosDias);
+
+            fechaEjecucion = cal.getTime();
+
+            System.out.println("Transacción recurrente. Próxima ejecución: " + fechaEjecucion);
+        }
+        else {
+            activa = false;
+            System.out.println("Transacción ejecutada y desactivada (no recurrente).");
+        }
     }
 }

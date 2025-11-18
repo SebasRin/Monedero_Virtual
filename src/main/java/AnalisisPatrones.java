@@ -35,4 +35,33 @@ public class AnalisisPatrones {
     public void setGastosPorCategoria(List<Double> gastosPorCategoria) {
         this.gastosPorCategoria = gastosPorCategoria;
     }
+
+    public void registrarGasto(String categoria, double monto) {
+
+        if (categoria == null || monto <= 0) return;
+
+        categorias.add(categoria);
+        gastosPorCategoria.add(monto);
+    }
+
+    public void generarReporte() {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Reporte de gastos:\n");
+
+        for (int i = 0; i < categorias.size(); i++) {
+            sb.append(categorias.get(i))
+                    .append(" : ")
+                    .append(gastosPorCategoria.get(i))
+                    .append("\n");
+        }
+
+        reportesGenerados.add(sb.toString());
+    }
+
+    public List<String> obtenerReportes() {
+        return reportesGenerados;
+    }
+
 }

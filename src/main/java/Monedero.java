@@ -6,12 +6,22 @@ public class Monedero {
     private String nombreMonedero;
     private double saldo;
     private List<Transaccion> historial;
+    private Cliente cliente;
 
-    public Monedero(String idMonedero, String nombreMonedero, double saldo) {
+    public Monedero(String idMonedero, String nombreMonedero, double saldo, Cliente cliente) {
         this.idMonedero = idMonedero;
         this.nombreMonedero = nombreMonedero;
         this.saldo = saldo;
         this.historial = new ArrayList<>();
+        this.cliente = cliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getIdMonedero() {

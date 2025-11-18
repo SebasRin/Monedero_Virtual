@@ -156,11 +156,24 @@ public class Cliente {
         }
 
         puntosAcumulados += puntosGanados;
-
+        actualizarRango();
     }
 
 
-    public void cambiarRango(RangoCliente nuevo) {
-        rangoActual = nuevo;
+    public void actualizarRango() {
+        int p = puntosAcumulados;
+
+        if (p <= 500) {
+            rangoActual = new Bronce("Bronce", 0, 500);
+        }
+        else if (p <= 1000) {
+            rangoActual = new Plata("Plata", 501, 1000);
+        }
+        else if (p <= 5000) {
+            rangoActual = new Oro("Oro", 1001, 5000);
+        }
+        else {
+            rangoActual = new Platino("Platino", 5001, 999999);
+        }
     }
 }
