@@ -1,7 +1,9 @@
+package Model;
+
 public class Oro extends RangoCliente{
 
-    public Oro(String nombreRango, int puntosMinimos, int puntosMaximos) {
-        super(nombreRango, puntosMinimos, puntosMaximos);
+    public Oro() {
+        super("Oro", 1001, 5000);
 
     }
 

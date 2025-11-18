@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +14,11 @@ public class Cliente {
     private List<Transaccion> historialGeneral;
     private List<TransaccionProgramada> transaccionesProgramadas;
 
-    public Cliente(String idCliente, String nombre, String correo, String telefono, RangoCliente rangoActual, int puntosAcumulados) {
+    public Cliente(String idCliente, String nombre, String correo, String telefono) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
-        this.rangoActual = rangoActual;
-        this.puntosAcumulados = puntosAcumulados;
         this.monederos = new ArrayList<>();
         this.historialGeneral = new ArrayList<>();
         this.transaccionesProgramadas = new ArrayList<>();
@@ -164,16 +164,16 @@ public class Cliente {
         int p = puntosAcumulados;
 
         if (p <= 500) {
-            rangoActual = new Bronce("Bronce", 0, 500);
+            rangoActual = new Bronce();
         }
         else if (p <= 1000) {
-            rangoActual = new Plata("Plata", 501, 1000);
+            rangoActual = new Plata();
         }
         else if (p <= 5000) {
-            rangoActual = new Oro("Oro", 1001, 5000);
+            rangoActual = new Oro();
         }
         else {
-            rangoActual = new Platino("Platino", 5001, 999999);
+            rangoActual = new Platino();
         }
     }
 }

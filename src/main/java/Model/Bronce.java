@@ -1,8 +1,9 @@
+package Model;
+
 public class Bronce extends RangoCliente{
 
-    public Bronce(String nombreRango, int puntosMinimos, int puntosMaximos) {
-        super(nombreRango, puntosMinimos, puntosMaximos);
-
+    public Bronce() {
+        super("Bronce", 0, 500);
     }
 
     @Override

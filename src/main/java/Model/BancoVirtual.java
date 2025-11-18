@@ -1,4 +1,7 @@
+package Model;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BancoVirtual {
@@ -8,12 +11,8 @@ public class BancoVirtual {
     private VerificacionDeTransacciones verificador;
     private Notificacion notificador;
 
-    public BancoVirtual(SistemaPuntos sistemaPuntos, AnalisisPatrones analizador, VerificacionDeTransacciones verificador, Notificacion notificador) {
+    public BancoVirtual() {
         this.clientesRegistrados = new ArrayList<>();
-        this.sistemaPuntos = sistemaPuntos;
-        this.analizador = analizador;
-        this.verificador = verificador;
-        this.notificador = notificador;
     }
 
     public List<Cliente> getClientesRegistrados() {
@@ -112,7 +111,19 @@ public class BancoVirtual {
     }
 
     public void procesarTransaccionesProgramadas() {
-        // luego
+        Date hoy = new Date();
+
+        for (Cliente c : clientesRegistrados) {
+            for (TransaccionProgramada tp : c.getTransaccionesProgramadas()) {
+
+                if (tp.isActiva() && hoy.after(tp.getFechaEjecucion())) {
+
+                    tp.ejecutarProgramada();
+
+                }
+            }
+        }
+
     }
 
     public void enviarNotificacion(String msg, Cliente c) {

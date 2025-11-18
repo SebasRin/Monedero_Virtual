@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Date;
 
 public class Deposito extends Transaccion{
@@ -7,6 +9,12 @@ public class Deposito extends Transaccion{
 
     @Override
     public void ejecutar() {
+        if (destino == null) {
+            System.out.println("Error: depósito sin monedero destino.");
+            return;
+        }
+
+        destino.depositar(monto);
 
     }
 }

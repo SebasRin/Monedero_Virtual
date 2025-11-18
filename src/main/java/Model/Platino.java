@@ -1,7 +1,9 @@
+package Model;
+
 public class Platino extends RangoCliente{
 
-    public Platino(String nombreRango, int puntosMinimos, int puntosMaximos) {
-        super(nombreRango, puntosMinimos, puntosMaximos);
+    public Platino() {
+        super("Platino", 5001, 999999);
 
     }
     @Override

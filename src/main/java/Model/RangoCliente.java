@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class RangoCliente {
     protected String nombreRango;
     protected int puntosMinimos;

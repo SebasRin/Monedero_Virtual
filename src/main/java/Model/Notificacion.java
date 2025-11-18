@@ -1,3 +1,5 @@
+package Model;
+
 public class Notificacion {
     private String mensaje;
     private String correoDestino;

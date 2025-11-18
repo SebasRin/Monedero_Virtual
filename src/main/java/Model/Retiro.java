@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Date;
 
 public class Retiro extends Transaccion{
@@ -6,6 +8,16 @@ public class Retiro extends Transaccion{
     }
     @Override
     public void ejecutar() {
+        if (origen == null) {
+            System.out.println("Error: retiro sin monedero origen.");
+            return;
+        }
+
+        boolean ok = origen.retirar(monto);
+
+        if (!ok) {
+            System.out.println("Retiro rechazado.");
+        }
 
     }
 }
