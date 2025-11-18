@@ -10,9 +10,12 @@ public class BancoVirtual {
     private AnalisisPatrones analizador;
     private VerificacionDeTransacciones verificador;
     private Notificacion notificador;
+    private ArrayList<TransaccionProgramada> transaccionProgramadas;
 
     public BancoVirtual() {
         this.clientesRegistrados = new ArrayList<>();
+        this.verificador = new VerificacionDeTransacciones(false);
+        this.transaccionProgramadas = new ArrayList<>();
     }
 
     public List<Cliente> getClientesRegistrados() {
@@ -134,6 +137,9 @@ public class BancoVirtual {
         notificador.setCorreoDestino(c.getCorreo());
 
         notificador.enviarCorreo();
+    }
+    public void agregarTransaccionProgramada(TransaccionProgramada tp) {
+        transaccionProgramadas.add(tp);
     }
 
 }

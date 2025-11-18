@@ -14,7 +14,7 @@ public class Cliente {
     private List<Transaccion> historialGeneral;
     private List<TransaccionProgramada> transaccionesProgramadas;
 
-    public Cliente(String idCliente, String nombre, String correo, String telefono) {
+    public Cliente(String idCliente, String nombre, String correo) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.correo = correo;

@@ -39,4 +39,6 @@ public abstract class RangoCliente {
     public abstract int bonusPuntos(int puntosOriginales);
 
     public abstract boolean retirosGratis();
+
+    public abstract String beneficio();
 }

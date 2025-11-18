@@ -14,4 +14,10 @@ public class Platino extends RangoCliente{
 
     @Override
     public boolean retirosGratis() { return true; }
+
+    @Override
+    public String beneficio() {
+        return "Transferencias con descuento del " + (descuentoTransferencias()*100) + "%";
+    }
+
 }

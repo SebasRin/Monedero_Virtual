@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerificacionDeTransacciones {
+public class  VerificacionDeTransacciones {
     private List<String> erroresDetectados;
     private boolean ultimaVerificacionCorrecta;
 

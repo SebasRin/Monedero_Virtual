@@ -11,11 +11,10 @@ public abstract class Transaccion {
     protected Monedero destino;
     protected Cliente clienteInvolucrado;
 
-    public Transaccion(String idTransaccion, Date fecha, double monto, String tipo, Monedero origen, Monedero destino, Cliente clienteInvolucrado) {
+    public Transaccion(double monto) {
         this.idTransaccion = idTransaccion;
         this.fecha = fecha;
         this.monto = monto;
-        this.tipo = tipo;
         this.origen = origen;
         this.destino = destino;
         this.clienteInvolucrado = clienteInvolucrado;

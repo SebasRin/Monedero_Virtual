@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class TransaccionProgramada {
     private String idProgramada;
+    private Transaccion transaccion;
     private Date fechaEjecucion;
     private double monto;
     private String tipoTransaccion;
@@ -15,8 +16,9 @@ public class TransaccionProgramada {
     private boolean activa;
 
 
-    public TransaccionProgramada(String idProgramada, Date fechaEjecucion, double monto, String tipoTransaccion, Monedero origen, Monedero destino, boolean recurrente, int cadaCuantosDias, boolean activa) {
+    public TransaccionProgramada(Transaccion transaccion, Date fechaEjecucion) {
         this.idProgramada = idProgramada;
+        this.transaccion = transaccion;
         this.fechaEjecucion = fechaEjecucion;
         this.monto = monto;
         this.tipoTransaccion = tipoTransaccion;
@@ -133,7 +135,7 @@ public class TransaccionProgramada {
         Transaccion t = null;
 
         if (tipoTransaccion.equalsIgnoreCase("deposito")) {
-            t = new Deposito(null, null, 0, null, null, null, null);
+            t = new Deposito(0,null);
             t.setDestino(destino);
             t.setMonto(monto);
             t.setFecha(new Date());
@@ -141,7 +143,7 @@ public class TransaccionProgramada {
             t.setTipo("Deposito");
         }
         else if (tipoTransaccion.equalsIgnoreCase("retiro")) {
-            t = new Retiro(null, null, 0, null, null, null, null);
+            t = new Retiro(0,null);
             t.setOrigen(origen);
             t.setMonto(monto);
             t.setFecha(new Date());
@@ -149,7 +151,7 @@ public class TransaccionProgramada {
             t.setTipo("Retiro");
         }
         else if (tipoTransaccion.equalsIgnoreCase("transferencia")) {
-            t = new Transferencia(null, null, 0, null, null, null, null);
+            t = new Transferencia(0,null,null);
             t.setOrigen(origen);
             t.setDestino(destino);
             t.setMonto(monto);
